@@ -3,11 +3,14 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 
 class StreamCreate extends React.Component {
-    renderInput(/*formProps*/ { input, label }) {
+    // META will be responsible for reading errors and others
+    renderInput(/*formProps*/ { input, label, meta }) {
+        // console.log(meta);
         return (
             <div className="field">
                 <label>{label}</label>
                 <input {...input} />
+                <div>{meta.error}</div>
             </div>
         );
     }
@@ -49,6 +52,7 @@ const validate = (formValues) => {
     const errors = {};
 
     if (!formValues.title) {
+        // Errors should have the same name after . as the Field Component. Otherwise redux-form won't be able to correlated both things – errors with their respective field
         errors.title = "You must enter a title";
     }
 
@@ -61,4 +65,5 @@ const validate = (formValues) => {
 
 export default reduxForm({
     form: "streamCreate",
+    validate,
 })(StreamCreate);
