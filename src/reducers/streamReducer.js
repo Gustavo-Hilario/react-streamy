@@ -10,7 +10,8 @@ import {
 export default (state = {}, action) => {
     switch (action.type) {
         case "FETCH_STREAMS":
-            return;
+            return { ...state, ..._.mapKeys(action.payload, "id") };
+        // The three dots before mapKeys is to add any object generated from the function inside the new object
         case "FETCH_STREAM":
             return {
                 ...state,
