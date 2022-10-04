@@ -24,8 +24,15 @@ export const signOut = () => {
 
 export const createStream = (formValues) => {
     // asynchronous action create // api request
-    return async (dispatch) => {
-        const response = await streams.post("/streams", formValues);
+    return async (
+        dispatch,
+        getState /*Redux-thunk offer us a way to get state from our React Store*/
+    ) => {
+        const { userId } = getState().auth;
+        const response = await streams.post("/streams", {
+            ...formValues,
+            userId,
+        });
 
         dispatch({ type: CREATE_STREAM, payload: response.data });
     };
