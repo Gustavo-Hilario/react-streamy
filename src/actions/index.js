@@ -1,3 +1,4 @@
+import streams from "../api/streams";
 import { SIGN_IN, SIGN_OUT } from "../actions/types";
 
 export const signIn = (userId) => {
@@ -10,5 +11,12 @@ export const signIn = (userId) => {
 export const signOut = () => {
     return {
         type: SIGN_OUT,
+    };
+};
+
+export const createStream = (formValues) => {
+    // asynchronous action create // api request
+    return async (dispatch) => {
+        streams.post("/streams", formValues);
     };
 };
