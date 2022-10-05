@@ -35,6 +35,8 @@ export const createStream = (formValues) => {
         });
 
         dispatch({ type: CREATE_STREAM, payload: response.data });
+
+        // Do progromattic navigation
     };
 };
 
