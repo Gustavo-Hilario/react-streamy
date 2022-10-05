@@ -24,7 +24,7 @@ const App = () => {
                     component={StreamCreate}
                 ></Route>
                 <Route
-                    path="/streams/edit"
+                    path="/streams/edit/:id"
                     exact
                     component={StreamEdit}
                 ></Route>
