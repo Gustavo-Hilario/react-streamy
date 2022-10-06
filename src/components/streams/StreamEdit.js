@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { fetchStream, editStream } from "../../actions";
 import StreamForm from "./StreamForm";
 
+import _ from "lodash";
+
 class StreamEdit extends React.Component {
     componentDidMount() {
         this.props.fetchStream(this.props.match.params.id);
@@ -22,9 +24,12 @@ class StreamEdit extends React.Component {
             <div>
                 <h3>Edit a Stream</h3>
                 <StreamForm
-                    initialValues={
-                        this.props.stream
-                    } /*Special prop name from Redux Form */
+                    // We can use Lodash to help picking specific values inside the Stream object
+                    initialValues={_.pick(
+                        this.props.stream,
+                        "title",
+                        "description"
+                    )} /*Special prop name from Redux Form */
                     onSubmit={this.onSubmit}
                 />
             </div>
