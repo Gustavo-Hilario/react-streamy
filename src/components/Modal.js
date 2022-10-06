@@ -17,9 +17,7 @@ const Modal = (props) => {
                 }
             >
                 <div className="header">{props.title}</div>
-                <div className="content">
-                    Are you sure you want to delete this stream?
-                </div>
+                <div className="content">{props.content}</div>
                 <div className="actions">{props.actions}</div>
             </div>
         </div>,
