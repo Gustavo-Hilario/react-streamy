@@ -5,10 +5,16 @@ import Modal from "../Modal";
 const StreamDelete = () => {
     const actions = () => {
         return (
-            <div>
+            // React.Fragment is helpfull when we do not want to have that extra div as parent element
+            <React.Fragment>
                 <button className="ui button primary">Delete</button>
                 <button className="ui button">Cancel</button>
-            </div>
+            </React.Fragment>
+
+            // Another syntax but the above is preferrable
+
+            // <>
+            // </>
         );
     };
 
