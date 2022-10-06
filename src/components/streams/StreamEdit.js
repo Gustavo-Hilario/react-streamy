@@ -2,12 +2,17 @@ import React from "react";
 
 // Get information from react store
 import { connect } from "react-redux";
-import { fetchStream } from "../../actions";
+import { fetchStream, editStream } from "../../actions";
+import StreamForm from "./StreamForm";
 
-class StreamList extends React.Component {
+class StreamEdit extends React.Component {
     componentDidMount() {
         this.props.fetchStream(this.props.match.params.id);
     }
+
+    onSubmit = (formValues) => {
+        console.log(formValues);
+    };
 
     render() {
         if (!this.props.stream) {
@@ -15,7 +20,13 @@ class StreamList extends React.Component {
         }
         return (
             <div>
-                <h2>{this.props.stream.title}</h2>
+                <h3>Edit a Stream</h3>
+                <StreamForm
+                    initialValues={
+                        this.props.stream
+                    } /*Special prop name from Redux Form */
+                    onSubmit={this.onSubmit}
+                />
             </div>
         );
     }
@@ -30,4 +41,6 @@ const mapStateToProps = (
     };
 };
 
-export default connect(mapStateToProps, { fetchStream })(StreamList);
+export default connect(mapStateToProps, { fetchStream, editStream })(
+    StreamEdit
+);
