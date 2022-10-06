@@ -13,7 +13,7 @@ class StreamEdit extends React.Component {
     }
 
     onSubmit = (formValues) => {
-        console.log(formValues);
+        this.props.editStream(this.props.match.params.id, formValues);
     };
 
     render() {
@@ -24,7 +24,7 @@ class StreamEdit extends React.Component {
             <div>
                 <h3>Edit a Stream</h3>
                 <StreamForm
-                    // We can use Lodash to help picking specific values inside the Stream object
+                    // We can use Lodash to help picking specific values inside the Stream object and create a new object
                     initialValues={_.pick(
                         this.props.stream,
                         "title",
