@@ -2,6 +2,9 @@ import React from "react";
 
 import Modal from "../Modal";
 
+// Redirect users elsewhere when they click out of the modal
+import history from "../../history";
+
 const StreamDelete = () => {
     const actions = () => {
         return (
@@ -25,6 +28,9 @@ const StreamDelete = () => {
                 title="Delete Stream"
                 content="Are you sure you want to delete this stream?"
                 actions={actions()}
+                onDismiss={() => {
+                    history.push("/");
+                }}
             />
         </div>
     );
