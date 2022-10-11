@@ -11,12 +11,29 @@ class StreamList extends React.Component {
     }
 
     render() {
+        if (!this.props.stream) {
+            return (
+                <div>
+                    <h2>Loading …</h2>
+                </div>
+            );
+        }
+
+        const { title, description } = this.props.stream;
+
         return (
             <div>
-                <h2>StreamShow</h2>
+                <h1>{title}</h1>
+                <h5>{description}</h5>
             </div>
         );
     }
 }
 
-export default connect(null, { fetchStream })(StreamList);
+const mapStateToProps = (state, ownProps) => {
+    return {
+        stream: state.streams[ownProps.match.params.id],
+    };
+};
+
+export default connect(mapStateToProps, { fetchStream })(StreamList);
