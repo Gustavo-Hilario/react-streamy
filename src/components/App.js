@@ -12,6 +12,8 @@ import Header from "./Header";
 
 import history from "../history";
 
+import "../App.css";
+
 const App = () => {
     return (
         <div className="ui container">
