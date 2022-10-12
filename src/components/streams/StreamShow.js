@@ -13,9 +13,32 @@ class StreamList extends React.Component {
     }
 
     componentDidMount() {
-        const streamId = this.props.match.params.id;
         // console.log(streamId);
+        const streamId = this.props.match.params.id;
+
         this.props.fetchStream(streamId);
+
+        this.buildPlayer();
+    }
+
+    componentDidUpdate() {
+        this.buildPlayer();
+    }
+
+    buildPlayer() {
+        if (this.player || !this.props.stream) {
+            return;
+        }
+
+        const streamId = this.props.match.params.id;
+
+        this.player = flv.createPlayer({
+            type: "flv",
+            url: `http://localhost:8000/live/${streamId}.flv`,
+        });
+
+        this.player.attachMediaElement(this.videoRef.current);
+        this.player.load();
     }
 
     render() {
